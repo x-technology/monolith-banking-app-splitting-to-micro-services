@@ -58,4 +58,4 @@ git submodule init && git submodule update
 ```
 
 <h4>License</h4>
-This project is licensed under the MIT license. Copyright (c) 2019-2020 Adrian Pietrzak.
+This project is licensed under the MIT license. Copyright (c) 2019-2020 Gabriel Alao.
