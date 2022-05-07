@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  postgers:
+    image: postgres:10.20-alpine3.15 # -> hub.docker.com
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: bank
