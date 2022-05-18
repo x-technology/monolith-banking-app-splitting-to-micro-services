@@ -15,7 +15,7 @@ export class CurrencyCron {
   @Cron(CronExpression.EVERY_12_HOURS)
   public async setCurrencyForeignExchangeRates(): Promise<void> {
     const currencyForeignExchangeRates: CurrencyForeignExchangeRatesType = await this._currencyService.getCurrencyForeignExchangeRates();
-    Object.assign(currencyForeignExchangeRates, { PLN: 1 });
+    Object.assign(currencyForeignExchangeRates, { GBP: 1 });
 
     for (const [name, currentExchangeRate] of Object.entries(
       currencyForeignExchangeRates,

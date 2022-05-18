@@ -78,12 +78,21 @@ export class CurrencyService {
   }
 
   public async getCurrencyForeignExchangeRates(): Promise<any> {
-    const endpoint = `https://api.exchangeratesapi.io/latest?base=PLN&symbols=USD,EUR`;
+    const base = 'GBP';
+    const currencies = ['EUR', 'USD', 'RUB'];
+    const endpoint = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${currencies.join(',')}&tsyms=${base}`;
 
     return this._httpService
       .get(endpoint)
       .toPromise()
-      .then((response) => response.data.rates)
+      .then((response) => {
+        // data: { EUR: { GBP: 0.8485 }, USD: { GBP: 0.8157 }, RUB: { GBP: 0.01245 } }
+        const data = currencies.reduce((prev: Object, currency: string) => {
+          prev[currency] = 1/response.data[currency][base];
+          return prev;
+        }, {});
+        return data;
+      })
       .catch((error) => {
         throw new ForeignExchangeRatesNotFoundException(error);
       });
