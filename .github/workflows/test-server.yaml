@@ -15,9 +15,9 @@ defaults:
 env:
   DB_HOST: localhost
   DB_PORT: 5432
-  POSTGRES_USER: root
-  POSTGRES_PASSWORD: root
-  POSTGRES_DB: bank
+  DB_USERNAME: root
+  DB_PASSWORD: root
+  DB_DATABASE: bank
 
 jobs:
   docker:
