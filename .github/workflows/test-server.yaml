@@ -1,0 +1,43 @@
+name: Test Server
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+defaults:
+ run:
+  working-directory: ./server
+
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Setup yarn
+      run: npm install -g yarn
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Start containers
+      run: docker-compose up -d
+
+    - name: Run tests
+      run: yarn test
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose down
