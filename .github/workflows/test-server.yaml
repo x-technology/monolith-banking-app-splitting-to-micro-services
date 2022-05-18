@@ -42,6 +42,9 @@ jobs:
     - name: Start containers
       run: docker-compose up -d
 
+    - name: Env
+      run: printenv
+
     - name: Run tests
       run: yarn test
 
