@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  postgers:
+  postgres:
     image: postgres:10.20-alpine3.15 # -> hub.docker.com
     ports:
       - 5432:5432
