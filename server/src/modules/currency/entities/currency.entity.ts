@@ -21,17 +21,17 @@ export class CurrencyEntity extends AbstractEntity<CurrencyDto> {
   })
   updatedAt: Date;
 
-  @OneToMany(() => BillEntity, (bill: BillEntity) => bill.currency, {
-    nullable: false,
-  })
-  bill: BillEntity[];
+  // @OneToMany(() => BillEntity, (bill: BillEntity) => bill.currency, {
+  //   nullable: false,
+  // })
+  // bill: BillEntity[];
 
-  @OneToMany(
-    () => UserConfigEntity,
-    (userConfig: UserConfigEntity) => userConfig.currency,
-    { nullable: false },
-  )
-  userConfig: UserConfigEntity[];
+  // @OneToMany(
+  //   () => UserConfigEntity,
+  //   (userConfig: UserConfigEntity) => userConfig.currency,
+  //   { nullable: false },
+  // )
+  // userConfig: UserConfigEntity[];
 
   dtoClass = CurrencyDto;
 }

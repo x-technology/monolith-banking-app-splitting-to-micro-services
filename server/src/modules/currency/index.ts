@@ -11,9 +11,9 @@ import { TransactionModule } from 'modules/transaction';
 @Module({
   imports: [
     HttpModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => TransactionModule),
-    forwardRef(() => BillModule),
+    // forwardRef(() => UserModule),
+    // forwardRef(() => TransactionModule),
+    // forwardRef(() => BillModule),
     TypeOrmModule.forFeature([CurrencyRepository]),
   ],
   controllers: [CurrencyController],

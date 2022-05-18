@@ -28,7 +28,7 @@ export class UserConfigEntity extends AbstractEntity<UserConfigDto> {
 
   @ManyToOne(
     () => CurrencyEntity,
-    (currency: CurrencyEntity) => currency.userConfig,
+    undefined,
     { nullable: false, onDelete: 'CASCADE' },
   )
   @JoinColumn({ name: 'main_currency_id' })

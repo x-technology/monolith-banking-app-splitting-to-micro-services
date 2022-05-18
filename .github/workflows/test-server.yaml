@@ -12,6 +12,13 @@ defaults:
  run:
   working-directory: ./server
 
+env:
+  DB_HOST: localhost
+  DB_PORT: 5432
+  POSTGRES_USER: root
+  POSTGRES_PASSWORD: root
+  POSTGRES_DB: bank
+
 jobs:
   docker:
     timeout-minutes: 10
