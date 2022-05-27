@@ -1,0 +1,14 @@
+{
+  "name": "micro",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:x-technology/monolith-banking-app-splitting-to-micro-services.git",
+  "author": "Andrew Red <andrew@reddikh.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/grpc/*"
+  ],
+  "dependencies": {
+    "lerna": "^5.0.0"
+  }
+}

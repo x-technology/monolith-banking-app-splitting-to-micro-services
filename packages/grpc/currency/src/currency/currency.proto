@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package currency;
+
+service CurrencyService {
+  rpc FindAll(FindAllRequest) returns (FindAllResponse);
+}
+
+message FindAllRequest {
+}
+
+message Currency {
+  string uuid = 1;
+  string name = 2;
+  string currentExchangeRate = 3;
+  string base = 4;
+}
+
+message FindAllResponse {
+  repeated Currency currencies = 1;
+}
