@@ -21,6 +21,7 @@ export class CurrencyService {
     const queryBuilder = this._currencyRepository.createQueryBuilder(
       'currency',
     );
+    console.log('queryBuilder', queryBuilder);
 
     const [currencies, currenciesCount] = await queryBuilder
       .skip(pageOptionsDto.skip)

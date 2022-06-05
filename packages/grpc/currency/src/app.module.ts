@@ -16,7 +16,7 @@ import { CurrencyModule } from './currency';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        entities: [__dirname + '/../../modules/**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/currency/entities/*.entity{.ts,.js}'],
         migrations: [__dirname + '/../../migrations/*{.ts,.js}'],
         namingStrategy: new SnakeNamingStrategy(),
         synchronize: false,
