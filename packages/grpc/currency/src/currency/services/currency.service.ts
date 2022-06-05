@@ -7,10 +7,12 @@ import {
 } from '../dtos';
 import { CurrencyEntity } from '../entities';
 import { CurrencyRepository } from '../repositories';
+import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class CurrencyService {
   constructor(
+    @InjectRepository(CurrencyRepository)
     private readonly _currencyRepository: CurrencyRepository,
     private readonly _httpService: HttpService,
   ) {}
@@ -21,7 +23,6 @@ export class CurrencyService {
     const queryBuilder = this._currencyRepository.createQueryBuilder(
       'currency',
     );
-    console.log('queryBuilder', queryBuilder);
 
     const [currencies, currenciesCount] = await queryBuilder
       .skip(pageOptionsDto.skip)

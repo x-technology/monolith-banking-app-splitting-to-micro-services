@@ -7,7 +7,6 @@ import { CurrencyController } from './controllers';
 import { CurrencyCron } from './crons';
 import { CurrencyRepository } from './repositories';
 import { CurrencyService } from './services';
-import { CurrencyEntity } from './entities';
 
 @Module({
   imports: [
@@ -18,10 +17,10 @@ import { CurrencyEntity } from './entities';
       },
     ]),
     HttpModule,
-    TypeOrmModule.forFeature([CurrencyEntity]),
+    TypeOrmModule.forFeature([CurrencyRepository]),
   ],
   controllers: [CurrencyController],
   exports: [CurrencyService, CurrencyCron],
-  providers: [CurrencyService, CurrencyCron, CurrencyRepository],
+  providers: [CurrencyService, CurrencyCron],
 })
 export class CurrencyModule {}

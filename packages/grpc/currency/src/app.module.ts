@@ -1,3 +1,4 @@
+import './polyfill.provider';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
@@ -19,7 +20,7 @@ import { CurrencyModule } from './currency';
         entities: [__dirname + '/currency/entities/*.entity{.ts,.js}'],
         migrations: [__dirname + '/../../migrations/*{.ts,.js}'],
         namingStrategy: new SnakeNamingStrategy(),
-        synchronize: false,
+        synchronize: true,
         subscribers: [],
         migrationsRun: true,
         logging: true,

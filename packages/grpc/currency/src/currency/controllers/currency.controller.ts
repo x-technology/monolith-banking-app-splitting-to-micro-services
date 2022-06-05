@@ -11,7 +11,7 @@ interface CurrencyClient {
   findAll(FindAllRequest): FindAllResponse;
 }
 
-@Controller('currency')
+@Controller('')
 export class CurrencyController implements OnModuleInit {
   private currencyClient: CurrencyClient;
 
@@ -19,29 +19,22 @@ export class CurrencyController implements OnModuleInit {
 
   onModuleInit() {
     this.currencyClient = this.client.getService<CurrencyClient>('CurrencyService');
-    console.log('this.currencyClient', this.currencyClient);
   }
 
   @Get('/')
   async getAll() {
-    console.log('test');
     return this.currencyClient.findAll({});
   }
 
   @GrpcMethod('CurrencyService')
   async findAll(data: FindAllRequest): Promise<FindAllResponse> {
-    console.log('request received', data);
     const response = await this._currencyService.getCurrencies(new CurrenciesPageOptionsDto());
-    console.log('response', response);
     return {
-      currencies: [],
-    }
-    // return {
-    //   currencies: response.data.map((c: CurrencyDto) => ({
-    //     uuid: c.uuid,
-    //     name: c.name,
-    //     currentExchangeRate: c.currentExchangeRate,
-    //   })),
-    // };
+      currencies: response.data.map((c: CurrencyDto) => ({
+        uuid: c.uuid,
+        name: c.name,
+        currentExchangeRate: c.currentExchangeRate,
+      })),
+    };
   }
 }
