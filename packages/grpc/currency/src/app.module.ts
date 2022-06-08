@@ -20,7 +20,7 @@ import { CurrencyModule } from './currency';
         entities: [__dirname + '/currency/entities/*.entity{.ts,.js}'],
         migrations: [__dirname + '/../../migrations/*{.ts,.js}'],
         namingStrategy: new SnakeNamingStrategy(),
-        synchronize: true,
+        synchronize: false,
         subscribers: [],
         migrationsRun: true,
         logging: true,

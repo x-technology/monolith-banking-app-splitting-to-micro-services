@@ -6,5 +6,6 @@ export const grpcClientOptions: ClientOptions = {
   options: {
     package: 'currency',
     protoPath: join(__dirname, './currency/currency.proto'),
+    url: '0.0.0.0:50051',
   },
 };

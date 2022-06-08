@@ -12,10 +12,17 @@ message FindAllRequest {
 message Currency {
   string uuid = 1;
   string name = 2;
-  string currentExchangeRate = 3;
-  string base = 4;
+  double currentExchangeRate = 3;
+}
+
+message PageMeta {
+  int32 page = 1;
+  int32 take = 2;
+  int32 itemCount = 3;
+  int32 pageCount = 4;
 }
 
 message FindAllResponse {
   repeated Currency currencies = 1;
+  PageMeta meta = 2;
 }
