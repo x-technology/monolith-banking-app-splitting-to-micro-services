@@ -2,21 +2,32 @@ import {
   Controller,
   Get,
   HttpCode,
-  HttpStatus,
+  HttpStatus, Inject, OnModuleInit,
   Query,
   ValidationPipe,
 } from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   CurrenciesPageDto,
-  CurrenciesPageOptionsDto,
+  CurrenciesPageOptionsDto, CurrencyDto,
 } from 'modules/currency/dtos';
-import { CurrencyService } from 'modules/currency/services';
+import { CurrencyServiceInterface } from '../interfaces/currencyService.interface';
+import { PageMetaDto } from "common/dtos";
 
 @Controller('Currencies')
 @ApiTags('Currencies')
-export class CurrencyController {
-  constructor(private readonly _currencyService: CurrencyService) {}
+export class CurrencyController implements OnModuleInit {
+  private currencyService: CurrencyServiceInterface;
+
+  constructor(
+    @Inject('CURRENCY_PACKAGE') private client: ClientGrpc
+  ) {
+  }
+
+  onModuleInit() {
+    this.currencyService = this.client.getService<CurrencyServiceInterface>('CurrencyService');
+  }
 
   @Get('/')
   @HttpCode(HttpStatus.OK)
@@ -27,8 +38,14 @@ export class CurrencyController {
   })
   async getAvailableCurrencies(
     @Query(new ValidationPipe({ transform: true }))
-    pageOptionsDto: CurrenciesPageOptionsDto,
+      pageOptionsDto: CurrenciesPageOptionsDto,
   ): Promise<CurrenciesPageDto> {
-    return this._currencyService.getCurrencies(pageOptionsDto);
+    const response = await this.currencyService.findAll({}).toPromise();
+    console.log('response', response);
+    return new CurrenciesPageDto(
+      response.currencies.map((c) => (c as unknown as CurrencyDto)),
+      response.meta as unknown as PageMetaDto,
+    );
+    // return this._currencyService.getCurrencies(pageOptionsDto);
   }
 }
