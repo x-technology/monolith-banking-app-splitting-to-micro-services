@@ -10,7 +10,9 @@ type CurrencyForeignExchangeRatesType = {
 export class CurrencyCron {
   private readonly _logger = new Logger(CurrencyCron.name);
 
-  constructor(private readonly _currencyService: CurrencyService) {}
+  constructor(private readonly _currencyService: CurrencyService) {
+    this.setCurrencyForeignExchangeRates()
+  }
 
   @Cron(CronExpression.EVERY_12_HOURS)
   public async setCurrencyForeignExchangeRates(): Promise<void> {

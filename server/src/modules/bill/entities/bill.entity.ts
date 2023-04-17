@@ -23,12 +23,8 @@ export class BillEntity extends AbstractEntity<BillDto> {
   })
   user: UserEntity;
 
-  @ManyToOne(
-    () => CurrencyEntity,
-    undefined,
-    { nullable: false, onDelete: 'CASCADE' },
-  )
-  currency: CurrencyEntity;
+  @Column()
+  currencyId: string;
 
   @OneToMany(
     () => TransactionEntity,
